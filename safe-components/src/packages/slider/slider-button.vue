@@ -2,6 +2,7 @@
 
   /*按钮部分*/
   .zyx-slider__button-wrapper {
+    outline: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -25,12 +26,11 @@
 
     /*初始状态*/
     &.noStatus {
-      background-color: #1991fa;
     }
 
     /*成功*/
     &.success {
-      background-color: #D2F4EF;
+      background-color: #5FD0BF;
       .zyx-icon {
         color: #fff;
       }
@@ -121,6 +121,10 @@
 
       wrapperStyle() {
         return {left: this.currentPosition};
+      },
+
+      btnWidth() {
+        return this.$refs.button['clientWidth']
       }
     },
 

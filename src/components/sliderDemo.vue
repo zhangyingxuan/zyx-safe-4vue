@@ -1,21 +1,20 @@
 <template>
   <div>
-      <JigsawSlider :valueFun="valueFun">
-      </JigsawSlider>
-      <slider :valueFun="valueFun">
+      <jigsawSlider :width="'400px'" @onSuccess="onSuccess">
+      </jigsawSlider>
+      <slider>
       </slider>
   </div>
 </template>
 
 <script>
-  import slider from '../../safe-components/src/packages/slider/slider'
-  import JigsawSlider from '../../safe-components/src/packages/slider/jigsawSlider'
-  // import slider from 'zyx-safe'
+  // import slider from '../../safe-components/src/packages/slider/slider'
+  // import JigsawSlider from '../../safe-components/src/packages/slider/jigsaw-slider'
   export default {
     name: 'App',
     components: {
-      slider,
-      JigsawSlider
+      // slider,
+      // JigsawSlider
     },
     data () {
       return {
@@ -28,8 +27,8 @@
       clickSomeThing() {
         console.log("哈哈哈")
       },
-      valueFun(left, right, pop) {
-        console.log(left + "" + right + "" + pop)
+      onSuccess() {
+        console.log('成功了啊')
       }
     },
     mounted () {

@@ -4,13 +4,13 @@
 <style lang="scss" scoped>
   /*整个滑块组件*/
   .zyx-slider {
+    min-width: 220px;
+    border-radius: 2px;
+    border: 1px solid #e4e7eb;
 
     .zyx-slider__runway {
       position: relative;
-      border-radius: 2px;
-      border: 1px solid #e4e7eb;
       height: 40px;
-      width: 100%;
 
       &.on-dragging {
         .zyx-slider__bar {
@@ -83,7 +83,9 @@
 
 </style>
 <template>
-  <div :class="[statusClass, 'zyx-slider']" :style="sliderCustomStyle">
+  <div :class="[statusClass, 'zyx-slider']"
+       ref="sliderBorder"
+       :style="sliderCustomStyle">
     <div class="zyx-slider__runway"
          :class="{'on-dragging': dragging}"
          ref="slider">
@@ -237,9 +239,7 @@
     },
     methods: {
       resetSize() {
-        if (this.$refs.slider && this.$refs.sliderButton) {
-          // console.log(this.$refs.slider['clientWidth'])
-          // console.log(this.$refs.sliderButton.btnWidth)
+        if (this.$refs.slider) {
           this.sliderSize = this.$refs.slider['clientWidth'];
         }
       },
@@ -283,5 +283,8 @@
     created() {
       this.firstValue = this.value > this.min ? this.value : this.min
     },
+    mounted() {
+      this.$refs.slider.style['width'] = this.$refs.sliderBorder['clientWidth'] - this.$refs.sliderButton.btnWidth + "px"
+    }
   }
 </script>

@@ -100,11 +100,13 @@
             <Loading></Loading>
             <span class="zyx-jigsaw-loadtext">加载中...</span></div>
         </div>
-        <div class="zyx-jigsaw-refresh icon-refresh" title="刷新" @click="refreshJigsaw"></div>
+        <div class="zyx-jigsaw-refresh icon-refresh" title="刷新" @click="refresh"></div>
       </div>
     </div>
     <Slider v-model="sliderValue"
+            :width="width"
             :status="status"
+            :disabled="status === 1"
             @change="onChange"
             @setCurrentSliderBtnLeft="setCurrentSliderBtnLeft"></Slider>
   </div>
@@ -115,7 +117,7 @@
   import Slider from './slider'
 
   export default {
-    name: 'slider',
+    name: 'jigsawSlider',
     props: {
       width: {
         type: String,
@@ -124,7 +126,7 @@
       height: {
         type: String,
         default: "medium"
-      },
+      }
     },
     data() {
       return {
@@ -150,10 +152,10 @@
         return `left: ${this.currentSliderBtnLeft}px`
       },
       jigsawBgWidth() {
-        return this.$refs.jigsawBg['clientWidth']
+        return this.$refs.jigsawBg ? this.$refs.jigsawBg['clientWidth'] : 1
       },
       jigsawLumpWidth() {
-        return this.$refs.jigsawLump['clientWidth']
+        return this.$refs.jigsawLump ? this.$refs.jigsawLump['clientWidth'] : 1
       }
     },
     watch: {
@@ -162,9 +164,16 @@
       }
     },
     created() {
-      this.refreshJigsaw()
+      this.refresh()
     },
     methods: {
+      refresh() {
+        // 刷新滑条
+        this.sliderValue = 0
+        this.status = 0
+        // 刷新整个组件
+        this.refreshJigsaw()
+      },
       /**
        *  刷新拼图
        */
@@ -199,31 +208,30 @@
        * @param value
        */
       onChange(value) {
-        if(Math.abs(this.currentJigsaw.xStart - this.currentSliderBtnLeft) <= 3) {
+        let realDiffLeft = this.currentJigsaw.xStart * this.jigsawBgWidth * 0.01
+        // 左右相差15px 则视为成功
+        if(Math.abs(realDiffLeft - this.currentSliderBtnLeft) <= 15) {
+        // if(Math.abs(this.currentJigsaw.xStart - value) <= 3) {
+          // 验证成功，按钮不可用
           this.status = 1
+          // 调用回调函数
+          this.$emit('onSuccess')
         } else {
           this.status = 2
           // 间隔 0.5秒 刷新状态
           setTimeout(()=>{
-            // 刷新滑条
-            this.sliderValue = 0
-            this.status = 0
-            // 刷新整个组件
-            this.refreshJigsaw()
+            this.refresh()
           }, 500)
         }
-        console.log('监听华快停止时，判断位置是否成功 onChange' + this.currentJigsaw.xStart)
-        console.log('监听华快停止时，判断位置是否成功 onChange' + value + '---' + this.currentSliderBtnLeft)
       },
       /**
        *  当滑块滑动时，刷新当前值
        * @param currentSliderBtnLeft
        */
       setCurrentSliderBtnLeft(currentSliderBtnLeft) {
+        this.currentSliderBtnLeft = currentSliderBtnLeft
         if(this.currentSliderBtnLeft > this.jigsawBgWidth - this.jigsawLumpWidth) {
           this.currentSliderBtnLeft = this.jigsawBgWidth - this.jigsawLumpWidth
-        } else {
-          this.currentSliderBtnLeft = currentSliderBtnLeft
         }
       }
     },
