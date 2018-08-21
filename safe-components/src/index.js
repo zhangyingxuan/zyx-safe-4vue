@@ -1,7 +1,7 @@
 import countDown from './packages/countDown/countDown.vue'
 import checkStrength from './packages/checkStrength/checkStrength.vue'
 import slider from './packages/slider/slider.vue'
-import jigsawSlider from './packages/slider/jigsawSlider.vue'
+import jigsawSlider from './packages/slider/jigsaw-slider.vue'
 
 const components = [
   countDown,
