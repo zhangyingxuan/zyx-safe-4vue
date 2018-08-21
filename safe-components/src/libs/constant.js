@@ -12,6 +12,10 @@
       {name: 17, xStart: 44.4}, {name: 18, xStart: 46.9},
       {name: 19, xStart: 32.5}, {name: 20, xStart: 78.1},
       {name: 21, xStart: 32.5}, {name: 22, xStart: 46.9},
+      {name: 23, xStart: 41.8}, {name: 24, xStart: 31.8},
+      {name: 25, xStart: 26.2}, {name: 26, xStart: 34.3},
+      {name: 27, xStart: 56.25}, {name: 28, xStart: 57.5},
+      {name: 29, xStart: 31.8}, {name: 30, xStart: 78.12},
     ],
   }
 

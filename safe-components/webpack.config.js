@@ -67,13 +67,13 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif)$/,
-        loader: 'file-loader',
+        loader: 'url-loader?limit=8192',
         options: {
           name: '[name].[ext]?[hash]'
         }
       },
       {
-        test:/\.(png|woff|woff2|svg|ttf|eot)$/,
+        test:/\.(woff|woff2|svg|ttf|eot)$/,
         use: {
           loader: 'url-loader',
           options: {
