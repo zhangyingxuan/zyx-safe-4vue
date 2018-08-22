@@ -117,7 +117,7 @@
   import Slider from './slider'
 
   export default {
-    name: 'jigsawSlider',
+    name: 'JigsawSlider',
     props: {
       width: {
         type: String,
@@ -215,7 +215,7 @@
           // 验证成功，按钮不可用
           this.status = 1
           // 调用回调函数
-          this.$emit('onSuccess')
+          this.$emit('success')
         } else {
           this.status = 2
           // 间隔 0.5秒 刷新状态

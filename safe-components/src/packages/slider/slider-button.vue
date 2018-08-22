@@ -64,7 +64,7 @@
 <script>
 
   export default {
-    name: 'ZYXSliderButton',
+    name: 'SliderButton',
 
     components: {},
 

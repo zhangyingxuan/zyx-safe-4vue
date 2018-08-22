@@ -106,7 +106,7 @@
   import SliderButton from './slider-button'
 
   export default {
-    name: 'slider',
+    name: 'Slider',
     components: {
       SliderButton
     },

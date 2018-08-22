@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import Index from '@/components/index'
 import CoutDownDemo from '@/components/coutDownDemo'
 import CheckStrengthDemo from '@/components/checkStrengthDemo'
-import Slider from '@/components/sliderDemo'
+import SliderDemo from '@/components/sliderDemo'
+import LoadingDemo from '@/components/LoadingDemo'
 
 Vue.use(Router)
 
@@ -25,9 +26,14 @@ export const appRouter = {
       component: CheckStrengthDemo
     },
     {
-      path: '/slider',
-      name: 'Slider',
-      component: Slider
+      path: '/sliderDemo',
+      name: 'SliderDemo',
+      component: SliderDemo
+    },
+    {
+      path: '/loadingDemo',
+      name: 'LoadingDemo',
+      component: LoadingDemo
     }
   ]
 }

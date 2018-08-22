@@ -1,5 +1,7 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
+//引入删除文件夹插件
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   // 修改打包入口
@@ -117,6 +119,15 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }),
+    // 删除dist包
+    new CleanWebpackPlugin(
+      ['dist/',],　 //匹配删除的文件
+      {
+        root: __dirname,       　　　　　　　　　　//根目录
+        verbose:  true,        　　　　　　　　　　//开启在控制台输出信息
+        dry:      false        　　　　　　　　　　//启用删除文件
+      }
+    )
   ])
 }

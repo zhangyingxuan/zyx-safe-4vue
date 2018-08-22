@@ -1,13 +1,21 @@
-import countDown from './packages/countDown/countDown.vue'
-import checkStrength from './packages/checkStrength/checkStrength.vue'
-import slider from './packages/slider/slider.vue'
-import jigsawSlider from './packages/slider/jigsaw-slider.vue'
+import countDown from './packages/countDown/index.js'
+import checkStrength from './packages/checkStrength/index.js'
+import slider from './packages/slider/slider.js'
+import jigsawSlider from './packages/slider/jigsaw-slider.js'
+import loading from './packages/loading/loading.js'
+import loadingRect from './packages/loading/loading-rect.js'
+import loadingBounce from './packages/loading/loading-bounce.js'
+import loadingBounce2 from './packages/loading/loading-bounce2.js'
 
 const components = [
   countDown,
   checkStrength,
   slider,
-  jigsawSlider
+  jigsawSlider,
+  loading,
+  loadingRect,
+  loadingBounce,
+  loadingBounce2
 ]
 
 const install = function(Vue, opts = {}) {
@@ -26,5 +34,9 @@ export default {
   countDown,
   checkStrength,
   slider,
-  jigsawSlider
+  jigsawSlider,
+  loading,
+  loadingRect,
+  loadingBounce,
+  loadingBounce2
 }

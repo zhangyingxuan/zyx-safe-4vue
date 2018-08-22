@@ -4,18 +4,14 @@
                      v-model="currentValue"
                      size="small"
                      width="400">
-        <!--<template slot="label">哈哈哈</template>-->
       </checkStrength>
-    <input type="button" value="确定" @click="clickBtn"/>
   </div>
 </template>
 
 <script>
-  import checkStrength from "../../safe-components/src/packages/checkStrength/checkStrength"
   export default {
     name: 'App',
     components: {
-      checkStrength
     },
     data () {
       return {
@@ -31,10 +27,6 @@
     watch: {
     },
     methods: {
-      clickBtn() {
-        this.currentValue = new Date().getTime()
-        alert(this.currentValue)
-      }
     },
     mounted () {
     }
@@ -42,12 +34,4 @@
 </script>
 
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
 </style>

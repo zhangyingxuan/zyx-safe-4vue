@@ -75,7 +75,9 @@
         default: 'rgba(0, 0, 0, .6)'
       }
     },
-    name: "countDown",
+
+
+    name: "CountDown",
     data () {
       return {
         ctx: null,

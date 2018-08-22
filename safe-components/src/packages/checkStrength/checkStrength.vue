@@ -160,7 +160,7 @@
 
 <script>
   export default {
-    name: "checkStrength",
+    name: "CheckStrength",
     props: {
       value: {
         required: true

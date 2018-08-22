@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: "debounceClick",
+    name: "DebounceClick",
     props: {
       autocomplete: {
         type: String,

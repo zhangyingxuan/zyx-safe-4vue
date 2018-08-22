@@ -7,12 +7,9 @@
 </template>
 
 <script>
-  // import commonButton from '../../safe-components/components/commonButton'
-  import {commonButton} from 'zyx-safe'
   export default {
     name: 'App',
     components: {
-      commonButton
     },
     data () {
       return {

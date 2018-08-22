@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: "LoadingBounce"
+    name: "LoadingBounce2"
   }
 </script>
 
