@@ -1,6 +1,12 @@
 <template>
-  <CountDown
-    :fire="fire"/>
+  <div>
+    <h2>倒计时组件</h2>
+    <p>通过点击组件开始计时</p>
+    <h3 id="ji-chu-yong-fa">基础用法</h3>
+
+    <CountDown
+      :fire="fire"/>
+  </div>
 </template>
 
 <script>

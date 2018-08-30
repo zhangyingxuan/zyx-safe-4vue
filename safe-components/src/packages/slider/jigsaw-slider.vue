@@ -206,7 +206,7 @@
         // 刷新小拼图位置
         this.currentSliderBtnLeft = 0
         // 获取随机数，拼接图片路径
-        let randomNum = this.GetRandomNum(0, this.jigsawArr.length)
+        let randomNum = this.GetRandomNum(0, this.jigsawArr.length - 1)
 
         this.bgImgSrc = require('../../assets/images/jigsawSlider/' + randomNum + '.jpg')
         this.lumpImgSrc = require('../../assets/images/jigsawSlider/' + randomNum + '_' + randomNum + '.png')

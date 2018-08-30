@@ -1,25 +1,29 @@
 <template>
   <div>
-      <JigsawSlider :width="'300px'" @success="onSuccess">
-      </JigsawSlider>
-      <Slider>
-      </Slider>
+    <h2>安装步骤</h2>
+    <h3>步骤一</h3>
+    <pre style="font-size: 14px">
+      利用npm安装
+
+      npm install zyx-safe --save
+    </pre>
+    <h3>步骤二</h3>
+    <pre style="font-size: 14px">
+      项目中入口文件main.js
+
+      import zyxSafe from 'zyx-safe'
+
+      Vue.use(zyxSafe)
+    </pre>
   </div>
 </template>
 
 <script>
-  import slider from '../../../safe-components/src/packages/slider/slider'
-  import JigsawSlider from '../../../safe-components/src/packages/slider/jigsaw-slider'
   export default {
-    name: 'SliderDemo',
+    name: 'home',
     components: {
-      slider,
-      JigsawSlider
     },
     methods: {
-      onSuccess() {
-        console.log('成功了啊')
-      }
     }
   }
 </script>

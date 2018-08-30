@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/view/main'
+import Home from '@/view/main/home'
 import CoutDownDemo from '@/view/countDown/describe'
 import CheckStrengthDemo from '@/view/checkStrength/describe'
 import SliderDemo from '@/view/slider/describe'
 import LoadingDemo from '@/view/loading/describe'
+
 Vue.use(Router)
 
 export const appRouter = {
@@ -13,7 +15,15 @@ export const appRouter = {
       path: '/',
       name: 'Index',
       component: Index,
-      nameCn: '首页'
+      nameCn: '首页',
+      redirect: {name: 'Home'},
+      children: [
+        {
+          path: '/home',
+          name: 'Home',
+          component: Home,
+          nameCn: '安装'
+        }]
     },
     {
       path: 'safe',
