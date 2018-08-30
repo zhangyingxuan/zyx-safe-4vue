@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import '@/element-ui'
+import '@/element-ui-theme'
 import zyxSafe from 'zyx-safe'
 
 Vue.config.productionTip = false

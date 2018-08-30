@@ -2,32 +2,52 @@
      Describe: canvas实现类似时钟的倒计时效果
  -->
 <template>
-  <div class="spinner">
-    <div class="rect1"></div>
-    <div class="rect2"></div>
-    <div class="rect3"></div>
-    <div class="rect4"></div>
-    <div class="rect5"></div>
+  <div class="spinner" :style="spinnerSize">
+    <div class="rect1" :style="customStyle"></div>
+    <div class="rect2" :style="customStyle"></div>
+    <div class="rect3" :style="customStyle"></div>
+    <div class="rect4" :style="customStyle"></div>
+    <div class="rect5" :style="customStyle"></div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "LoadingRect"
+    name: "LoadingRect",
+    props: {
+      // 开始倒计时
+      color: {
+        type: String,
+        default: '#67CF22'
+      },
+      width: {
+        type: Number,
+        default: 50
+      },
+      height: {
+        type: Number,
+        default: 60
+      }
+    },
+    computed: {
+      customStyle() {
+        return `background-color: ${this.color};width: ${this.width / 10}px;`
+      },
+      spinnerSize() {
+        return `width: ${this.width}px;height: ${this.height}px;`
+      }
+    }
   }
 </script>
 
 <style scoped>
   .spinner {
-    margin: 100px auto;
-    width: 50px;
-    height: 60px;
+    margin: 20px auto;
     text-align: center;
     font-size: 10px;
   }
 
   .spinner > div {
-    background-color: #67CF22;
     height: 100%;
     width: 6px;
     display: inline-block;

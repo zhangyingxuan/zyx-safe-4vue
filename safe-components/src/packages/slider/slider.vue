@@ -40,6 +40,11 @@
       /*提示语部分*/
       .zyx-slider__tips {
         line-height: 40px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        text-align: center;
       }
     }
 
@@ -138,7 +143,7 @@
       },
       message: {
         type: String,
-        default: '向右滑动滑块填充拼图'
+        default: '向右滑动滑块'
       },
       disabled: {
         type: Boolean,

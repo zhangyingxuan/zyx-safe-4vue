@@ -48,6 +48,7 @@
       /*刷新 加载中背景*/
       .zyx-jigsaw-loadbox {
         position: absolute;
+        border-radius: 2px;
         left: 0;
         top: 0;
         background: linear-gradient(to bottom right, #BDBCB7, #DFDCD7);
@@ -95,9 +96,9 @@
                :style="lumpCustomStyle">
         </div>
 
-        <div :class="[!refreshLoading ? 'hidden' : '' , 'zyx-jigsaw-loadbox']" style="border-radius: 2px">
+        <div :class="[!refreshLoading ? 'hidden' : '' , 'zyx-jigsaw-loadbox']">
           <div class="zyx-jigsaw-loadbox__inner">
-            <Loading></Loading>
+            <Loading color="#999"></Loading>
             <span class="zyx-jigsaw-loadtext">加载中...</span></div>
         </div>
         <div class="zyx-jigsaw-refresh icon-refresh" title="刷新" @click="refresh"></div>
@@ -106,6 +107,7 @@
     <Slider v-model="sliderValue"
             :width="width"
             :status="status"
+            :message="message"
             :disabled="status === 1"
             @change="onChange"
             @setCurrentSliderBtnLeft="setCurrentSliderBtnLeft"></Slider>
@@ -123,9 +125,13 @@
         type: String,
         default: "320px"
       },
-      height: {
+      failAutoRefresh: {
+        type: Boolean,
+        default: true
+      },
+      message: {
         type: String,
-        default: "medium"
+        default: '向右滑动滑块填充拼图'
       }
     },
     data() {
@@ -133,7 +139,24 @@
         refreshLoading: false,
         bgImgSrc: '',
         lumpImgSrc: '',
-        jigsawArr: window.constant.jigsawArr,
+        // jigsawArr: window.constant.jigsawArr,
+        jigsawArr: [{name: 0, xStart: 41.6},
+          {name: 1, xStart: 64.3}, {name: 2, xStart: 50.6},
+          {name: 3, xStart: 72.5}, {name: 4, xStart: 38.7},
+          {name: 5, xStart: 54.4}, {name: 6, xStart: 68.1},
+          {name: 7, xStart: 53.7}, {name: 8, xStart: 37.5},
+          {name: 9, xStart: 57.5}, {name: 10, xStart: 54.3},
+          {name: 11, xStart: 58.1}, {name: 12, xStart: 50},
+          {name: 13, xStart: 56.2}, {name: 14, xStart: 38.1},
+          {name: 15, xStart: 79.3}, {name: 16, xStart: 65.6},
+          {name: 17, xStart: 44.4}, {name: 18, xStart: 46.9},
+          {name: 19, xStart: 32.5}, {name: 20, xStart: 78.1},
+          {name: 21, xStart: 32.5}, {name: 22, xStart: 46.9},
+          {name: 23, xStart: 41.8}, {name: 24, xStart: 31.8},
+          {name: 25, xStart: 26.2}, {name: 26, xStart: 34.3},
+          {name: 27, xStart: 56.25}, {name: 28, xStart: 57.5},
+          {name: 29, xStart: 31.8}, {name: 30, xStart: 78.12},
+        ],
         currentJigsaw: {},
         sliderValue: 0,
         currentSliderBtnLeft: 0,
@@ -164,7 +187,7 @@
       }
     },
     created() {
-      this.refresh()
+      this.refreshJigsaw()
     },
     methods: {
       refresh() {
@@ -173,6 +196,7 @@
         this.status = 0
         // 刷新整个组件
         this.refreshJigsaw()
+        this.$emit('refresh')
       },
       /**
        *  刷新拼图
@@ -218,10 +242,14 @@
           this.$emit('success')
         } else {
           this.status = 2
-          // 间隔 0.5秒 刷新状态
-          setTimeout(()=>{
-            this.refresh()
-          }, 500)
+          this.$emit('fail')
+          // 如果自定义自动刷新
+          if(this.failAutoRefresh) {
+            // 间隔 0.5秒 刷新状态
+            setTimeout(() => {
+              this.refresh()
+            }, 500)
+          }
         }
       },
       /**

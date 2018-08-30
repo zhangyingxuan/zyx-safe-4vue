@@ -4,32 +4,22 @@
       </JigsawSlider>
       <Slider>
       </Slider>
-
   </div>
 </template>
 
 <script>
-  // import slider from '../../safe-components/src/packages/slider/slider'
-  import JigsawSlider from '../../safe-components/src/packages/slider/jigsaw-slider'
+  import slider from '../../../safe-components/src/packages/slider/slider'
+  import JigsawSlider from '../../../safe-components/src/packages/slider/jigsaw-slider'
   export default {
-    name: 'App',
+    name: 'SliderDemo',
     components: {
-      // slider,
+      slider,
       JigsawSlider
-    },
-    data () {
-      return {
-      }
-    },
-    computed: {
-
     },
     methods: {
       onSuccess() {
         console.log('成功了啊')
       }
-    },
-    mounted () {
     }
   }
 </script>

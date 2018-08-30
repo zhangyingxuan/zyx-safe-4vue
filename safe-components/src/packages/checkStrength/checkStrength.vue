@@ -90,6 +90,9 @@
       &.success {
         border-color: #67c23a;
       }
+      &.normal {
+        border-color: #DCDFE6;
+      }
 
       .check-strength-content {
         .input__inner {
@@ -135,7 +138,7 @@
 </style>
 <template>
   <div :class="[checkStrengthClass, 'check-strength']" :style="customStyle">
-    <div :class="[isAllPassed ? 'success' : 'error', 'check-strength-border']">
+    <div :class="[statusClass, 'check-strength-border']">
       <div class="check-strength-content">
         <input class="input__inner"
                v-model="currentValue"
@@ -147,11 +150,14 @@
                @change="handleChange"
                :maxlength="maxlength">
       </div>
-      <i :class="[isShowPwd ? 'icon-eye' : 'icon-eye-blocked', '']" @click="isShowPwd = !isShowPwd"></i>
+      <i v-if="showIcon"
+         :class="[isShowPwd ? 'icon-eye' : 'icon-eye-blocked', '']"
+         @click="onClickIcon"></i>
     </div>
-    <div class="notice-border">
-      <p class="notice-row" v-for="rule in rules" :class="rule.isPassed ? '' : 'check-error'">
-        <i :class="rule.isPassed ? 'icon-checkmark check-success' : 'icon-cross check-error'"></i>
+    <div class="notice-border" v-if="rules && rules.length > 0">
+      <p class="notice-row" v-for="rule in rules" :class="rule.status === 2 ? 'check-error' : ''">
+        <i :class="rule.status === 1 ? 'icon-checkmark check-success' :
+                   (rule.status === 2 ? 'icon-cross check-error' : 'icon-cross ')"></i>
         <span class="notice-content">{{rule.message}}</span>
       </p>
     </div>
@@ -162,6 +168,10 @@
   export default {
     name: "CheckStrength",
     props: {
+      showIcon: {
+        type: Boolean,
+        default: true
+      },
       value: {
         required: true
       },
@@ -170,11 +180,8 @@
         default: "medium"
       },
       width: {
-        type: String
-      },
-      labelStr: {
         type: String,
-        default: "label"
+        default: '100%'
       },
       autocomplete: {
         type: String,
@@ -188,21 +195,39 @@
         type: Array,
         default: () => {
           return [
-            {message: "长度为6~14个字符", rule: "^.{6,14}$", isPassed: false},
-            {message: "不允许有空格", rule: "^[^\\s]+$", isPassed: false},
-            {message: "支持数字,大小写字母和标点符号", rule: "^[A-Za-z0-9.,;:'\"]+$", isPassed: false}]
+            {message: "长度为6~14个字符", rule: "^.{6,14}$"},
+            {message: "不允许有空格", rule: "^[^\\s]+$"},
+            {message: "支持数字,大小写字母和标点符号", rule: "^[A-Za-z0-9.,;:'\"]+$"}]
         }
       }
     },
     data() {
       return {
-        currentValue: this.value,
-        isAllPassed: false,
+        currentValue: '',
+        /**
+         *  校验状态 0，初始状态 1，成功 2，失败
+         */
+        currentStatus: 0,
         isShowPwd: false,
         focused: false
       }
     },
     computed: {
+      statusClass() {
+        let statusClass
+        switch(this.currentStatus) {
+          case 0:
+            statusClass = 'normal'
+            break
+          case 1:
+            statusClass = 'success'
+            break
+          case 2:
+            statusClass = 'error'
+            break
+        }
+        return statusClass
+      },
       checkStrengthClass() {
         let classType
         switch (this.size) {
@@ -225,6 +250,13 @@
         if (this.width) {
           return `width: ${this.width}`
         }
+      },
+      /**
+       *  是否校验通过
+       * @returns {boolean}
+       */
+      success() {
+        return this.currentStatus === 1
       }
     },
     watch: {
@@ -232,22 +264,37 @@
         this.setCurrentValue(val);
       },
       currentValue(val) {
-        this.isAllPassed = true
+        this.currentStatus = 1
         if (this.rules && this.rules instanceof Array) {
           this.rules.forEach(item => {
             if (new RegExp(item.rule).test(val)) {
-              item.isPassed = true
+              item.status = 1
               return true
             } else {
-              this.isAllPassed = false
-              item.isPassed = false
+              this.currentStatus = 2
+              item.status = 2
               return false
             }
           })
         }
+        if(this.currentStatus === 1) {
+          this.$emit('success')
+        } else {
+          this.$emit('fail')
+        }
       }
     },
     methods: {
+      isSuccess() {
+        return this.success
+      },
+      /**
+       *  点击眼睛图标
+       */
+      onClickIcon() {
+        this.isShowPwd = !this.isShowPwd
+        this.$emit('clickIcon', this.isShowPwd)
+      },
       handleInput(event) {
         const value = event.target.value;
         this.$emit('input', value);
@@ -269,7 +316,9 @@
         this.currentValue = value;
       },
     },
-    mounted() {
+    created() {
+      // 初始化组件，通过设置value 进行首次赋值校验 2018-8-22 20:14:48
+      this.setCurrentValue(this.value)
     },
     destroyed() {
     }

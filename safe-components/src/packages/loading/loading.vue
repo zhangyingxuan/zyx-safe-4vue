@@ -3,51 +3,64 @@
  -->
 <template>
   <!--公告-->
-  <div class="spinner">
+  <div class="spinner" :style="spinnerSize">
     <div class="spinner-container container1">
-      <div class="circle1"></div>
-      <div class="circle2"></div>
-      <div class="circle3"></div>
-      <div class="circle4"></div>
+      <div class="circle1" :style="customStyle"></div>
+      <div class="circle2" :style="customStyle"></div>
+      <div class="circle3" :style="customStyle"></div>
+      <div class="circle4" :style="customStyle"></div>
     </div>
     <div class="spinner-container container2">
-      <div class="circle1"></div>
-      <div class="circle2"></div>
-      <div class="circle3"></div>
-      <div class="circle4"></div>
+      <div class="circle1" :style="customStyle"></div>
+      <div class="circle2" :style="customStyle"></div>
+      <div class="circle3" :style="customStyle"></div>
+      <div class="circle4" :style="customStyle"></div>
     </div>
     <div class="spinner-container container3">
-      <div class="circle1"></div>
-      <div class="circle2"></div>
-      <div class="circle3"></div>
-      <div class="circle4"></div>
+      <div class="circle1" :style="customStyle"></div>
+      <div class="circle2" :style="customStyle"></div>
+      <div class="circle3" :style="customStyle"></div>
+      <div class="circle4" :style="customStyle"></div>
     </div>
   </div>
 </template>
 
 <script>
   export default {
+    name: "Loading",
     props: {
       // 开始倒计时
-      fire: {
-
+      color: {
+        type: String,
+        default: '#67CF22'
+      },
+      width: {
+        type: Number,
+        default: 20
+      },
+      height: {
+        type: Number,
+        default: 20
       }
     },
-    name: "Loading"
+    computed: {
+      customStyle() {
+        return `background-color: ${this.color};width: ${this.width / 3.5}px;height: ${this.height / 3.5}px;`
+      },
+      spinnerSize() {
+        return `width: ${this.width}px;height: ${this.height}px;`
+      }
+    }
   }
 </script>
 
 <style scoped>
   .spinner {
-    margin: auto;
-    width: 20px;
-    height: 20px;
+    margin:10px auto;
     position: relative;
   }
 
   .container1 > div, .container2 > div, .container3 > div {
-    width: 6px;
-    height: 6px;
     background-color: #333;
 
     border-radius: 100%;

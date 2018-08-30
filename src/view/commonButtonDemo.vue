@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    name: 'App',
+    name: 'CommonButtonDemo',
     components: {
     },
     data () {

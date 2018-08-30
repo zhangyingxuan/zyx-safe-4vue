@@ -2,6 +2,7 @@
 
   /*按钮部分*/
   .zyx-slider__button-wrapper {
+    text-align: center;
     outline: none;
     position: absolute;
     top: 0;

@@ -1,18 +1,13 @@
 <template>
-  <div id="app" @click="fireCD">
-    <div class="demo">
-      <countDown
-        :fire="fire"/>
-    </div>
-  </div>
+  <CountDown
+    :fire="fire"/>
 </template>
 
 <script>
   export default {
-    name: 'App',
-    components: {
-    },
-    data () {
+    name: 'CoutDownDemo',
+    components: {},
+    data() {
       return {
         fire: 0,
         time: 20,
@@ -32,7 +27,7 @@
     },
     methods: {
       // 重新开启新的倒计时
-      fireCD () {
+      fireCD() {
         // 自定义参数设置
         this.time = 11
         this.width = 300
@@ -50,11 +45,11 @@
         // 启动倒计时
         this.fire++
       },
-      onEnd () {
+      onEnd() {
         console.log('倒计时结束的回调函数')
       }
     },
-    mounted () {
+    mounted() {
       // 启动倒计时
       this.fire++
     }
@@ -62,12 +57,4 @@
 </script>
 
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
 </style>
