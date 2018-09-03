@@ -1,5 +1,5 @@
 <!--
-     Describe: 校验正则组件
+     Describe: 昼夜星辰
  -->
 <style lang="scss" scoped>
   @import "../../assets/fonts/style.css";
@@ -17,6 +17,7 @@
           .input__inner {
             height: 40px;
             line-height: 40px;
+            width: 100%;
           }
         }
 
@@ -38,6 +39,7 @@
           .input__inner {
             height: 30px;
             line-height: 30px;
+            width: 100%;
           }
         }
 
@@ -59,6 +61,7 @@
           .input__inner {
             height: 20px;
             line-height: 20px;
+            width: 100%;
           }
         }
 
@@ -93,7 +96,6 @@
 
       .check-strength-content {
         .input__inner {
-          width: 100%;
           border: none;
           -webkit-appearance: none;
           background-color: #fff;
@@ -123,6 +125,7 @@
           line-height: 14px;
         }
       }
+
       .check-success {
         color: #5BC92E;
       }
@@ -131,18 +134,6 @@
       }
     }
   }
-  .clear-input {
-    display: none;
-    float: right;
-  }
-  .input__inner:valid +
-
-  .clear-input {
-    display: block;
-    font-size: 18px !important;
-    text-align: right;
-    color: #777;
-  }
 
 </style>
 <template>
@@ -150,22 +141,14 @@
     <div :class="[statusClass, 'check-strength-border']">
       <div class="check-strength-content">
         <input class="input__inner"
-               required="required"
                v-model="currentValue"
                :type="isShowPwd ? 'text' : 'password'"
-               :style="clearable ? 'width: 90%' : ''"
                :autocomplete="autocomplete"
                @input="handleInput"
                @focus="handleFocus"
                @blur="handleBlur"
                @change="handleChange"
                :maxlength="maxlength">
-        <!--<a href="javascript:;" class="clear-input">-->
-          <!--<img src="images/icon-clear.png" class="clear-input-img" alt="" />-->
-        <!--</a>-->
-        <i class="clear-input icon-delete"
-           v-if="clearable"
-           @click="clearInput"></i>
       </div>
       <i v-if="showIcon"
          :class="[isShowPwd ? 'icon-eye' : 'icon-eye-blocked', '']"
@@ -216,11 +199,7 @@
             {message: "不允许有空格", rule: "^[^\\s]+$"},
             {message: "支持数字,大小写字母和标点符号", rule: "^[A-Za-z0-9.,;:'\"]+$"}]
         }
-      },
-      clearable: {
-        type: Boolean,
-        default: false
-      },
+      }
     },
     data() {
       return {
@@ -315,12 +294,6 @@
       onClickIcon() {
         this.isShowPwd = !this.isShowPwd
         this.$emit('clickIcon', this.isShowPwd)
-      },
-      /**
-       *  清空输入内容
-       */
-      clearInput() {
-        this.currentValue = ''
       },
       handleInput(event) {
         const value = event.target.value;

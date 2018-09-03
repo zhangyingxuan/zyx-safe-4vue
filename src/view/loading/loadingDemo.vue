@@ -19,14 +19,6 @@
       loadingRect,
       loadingBounce,
       loadingBounce2
-    },
-    data() {
-      return {}
-    },
-    computed: {},
-    methods: {
-    },
-    mounted() {
     }
   }
 </script>

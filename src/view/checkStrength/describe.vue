@@ -7,10 +7,11 @@
     <checkStrength :rules="rules"
                    v-model="currentValue"
                    size="small"
+                   clearable
                    width="400px">
     </checkStrength>
     <checkStrength :rules="rules"
-                   v-model="currentValue"
+                   v-model="currentValue2"
                    size="small"
                    width="80%">
     </checkStrength>
@@ -163,6 +164,7 @@
     data() {
       return {
         currentValue: 'dsafs',
+        currentValue2: '123134daa',
         rules: [
           {message: "长度为6~14个字符", rule: "^.{6,14}$", isPassed: false},
           {message: "支持数字,大小写字母和标点符号帅到爆炸", rule: "^[A-Za-z0-9.,;:'\"]+$", isPassed: false}],
@@ -204,6 +206,12 @@
             type: 'String',
             options: '',
             defaultValue: '100%'
+          }, {
+            attributes: 'clearable',
+            explain: '是否显示清空icon',
+            type: 'Boolean',
+            options: 'true/false',
+            defaultValue: 'false'
           }, {
             attributes: 'autocomplete',
             explain: '自动完成，根据用户输入值进行搜索和过滤，让用户快速找到并从预设值列表中选择',

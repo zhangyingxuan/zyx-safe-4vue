@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2>正则校验框</h2>
-    <p>通过鼠标或键盘输入字符</p>
+    <h2>拼图滑块</h2>
+    <p>通过滑动滑块移动拼图至缺失位置</p>
     <h3 id="ji-chu-yong-fa">基础用法</h3>
 
     <jigsawSlider :width="'300px'"

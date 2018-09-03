@@ -289,7 +289,7 @@
       this.firstValue = this.value > this.min ? this.value : this.min
     },
     mounted() {
-      this.$refs.slider.style['width'] = this.$refs.sliderBorder['clientWidth'] - this.$refs.sliderButton.btnWidth + "px"
+      this.$refs.slider.style['width'] = (this.$refs.sliderBorder['clientWidth'] - this.$refs.sliderButton.btnWidth) + "px"
     }
   }
 </script>
