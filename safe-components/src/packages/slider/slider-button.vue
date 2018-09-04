@@ -123,10 +123,6 @@
       wrapperStyle() {
         return {left: this.currentPosition};
       },
-
-      btnWidth() {
-        return this.$refs.button['clientWidth']
-      }
     },
 
     watch: {
@@ -157,6 +153,11 @@
     },
 
     methods: {
+
+      getBtnWidth() {
+        // 获取元素样式值,为元素ref="button"(在样式里面写死了的宽度)
+        return window.getComputedStyle(this.$refs.button).width;
+      },
 
       handleMouseEnter() {
         this.hovering = true;

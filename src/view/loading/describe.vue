@@ -2,7 +2,7 @@
   <div>
     <h2>加载loading</h2>
     <p>多种纯css loading 动画组件</p>
-    <h3 id="ji-chu-yong-fa">基础用法</h3>
+    <h3>基础用法</h3>
 
     <loading color="red" :width="30" :height="30">
     </loading>

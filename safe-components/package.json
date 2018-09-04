@@ -1,6 +1,6 @@
 {
   "name": "zyx-safe",
-  "version": "1.0.27",
+  "version": "1.0.34",
   "description": "some safe components",
   "author": "zhangyingxuan <827516789@qq.com>",
   "private": false,
@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhangyingxuan/zhangyingxuan.github.io"
+    "url": "https://github.com/zhangyingxuan/zyx-safe-4vue.git"
   },
   "keywords": [
     "vue",
     "safe"
   ],
-  "homepage": "https://github.com/zhangyingxuan/zhangyingxuan.github.io",
+  "homepage": "https://zhangyingxuan.github.io/zyx-safe-4vue",
   "dependencies": {
     "vue": "^2.5.11"
   },

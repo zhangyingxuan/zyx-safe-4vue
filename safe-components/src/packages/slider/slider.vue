@@ -1,5 +1,7 @@
 <!--
      Describe: 滑块组件
+     author: 张颖旋
+     date: 2018-09-04 17:00:26
  -->
 <style lang="scss" scoped>
   /*整个滑块组件*/
@@ -240,7 +242,7 @@
 
       max() {
         this.setValues();
-      },
+      }
     },
     methods: {
       resetSize() {
@@ -289,7 +291,14 @@
       this.firstValue = this.value > this.min ? this.value : this.min
     },
     mounted() {
-      this.$refs.slider.style['width'] = (this.$refs.sliderBorder['clientWidth'] - this.$refs.sliderButton.btnWidth) + "px"
+      // this.$refs.slider.style['width'] = (this.$refs.sliderBorder['clientWidth'] - this.$refs.sliderButton.btnWidth) + "px"
+
+      this.$nextTick(() => {
+        //获取元素内联样式值
+        let sliderBorderWidth = this.$refs.sliderBorder.style.width.replace('px', '')
+        let btnWidth = this.$refs.sliderButton.getBtnWidth().replace('px', '')
+        this.$refs.slider.style['width'] = (sliderBorderWidth - btnWidth) + "px"
+      })
     }
   }
 </script>

@@ -6,6 +6,9 @@ import loading from './packages/loading/loading.js'
 import loadingRect from './packages/loading/loading-rect.js'
 import loadingBounce from './packages/loading/loading-bounce.js'
 import loadingBounce2 from './packages/loading/loading-bounce2.js'
+import scrollToTop from './packages/scrollTo/scrollToTop.js'
+import scrollToBottom from './packages/scrollTo/scrollToBottom.js'
+import dragContainer from './packages/dragContainer/index.js'
 
 const components = [
   countDown,
@@ -15,7 +18,10 @@ const components = [
   loading,
   loadingRect,
   loadingBounce,
-  loadingBounce2
+  loadingBounce2,
+  scrollToTop,
+  scrollToBottom,
+  dragContainer
 ]
 
 const install = function(Vue, opts = {}) {
@@ -38,5 +44,8 @@ export default {
   loading,
   loadingRect,
   loadingBounce,
-  loadingBounce2
+  loadingBounce2,
+  scrollToTop,
+  scrollToBottom,
+  dragContainer
 }

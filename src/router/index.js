@@ -6,6 +6,8 @@ import CoutDownDemo from '@/view/countDown/describe'
 import CheckStrengthDemo from '@/view/checkStrength/describe'
 import SliderDemo from '@/view/slider/describe'
 import LoadingDemo from '@/view/loading/describe'
+import DragContainerDemo from '@/view/dragContainer/describe'
+import ScrollToTopDemo from '@/view/scrollToTop/describe'
 
 Vue.use(Router)
 
@@ -56,10 +58,22 @@ export const appRouter = {
           nameCn: '倒计时'
         },
         {
+          path: '/dragContainerDemo',
+          name: 'dragContainerDemo',
+          component: DragContainerDemo,
+          nameCn: '拖拽容器'
+        },
+        {
           path: '/loadingDemo',
           name: 'LoadingDemo',
           component: LoadingDemo,
           nameCn: '加载loading'
+        },
+        {
+          path: '/scrollToTopDemo',
+          name: 'ScrollToTopDemo',
+          component: ScrollToTopDemo,
+          nameCn: '滚动至顶部'
         }
       ]
     },

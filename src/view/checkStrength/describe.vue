@@ -2,7 +2,7 @@
   <div>
     <h2>正则校验框</h2>
     <p>通过鼠标或键盘输入字符</p>
-    <h3 id="ji-chu-yong-fa">基础用法</h3>
+    <h3>基础用法</h3>
 
     <checkStrength :rules="rules"
                    v-model="currentValue"

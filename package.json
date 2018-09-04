@@ -14,7 +14,7 @@
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
-    "zyx-safe": "^1.0.26"
+    "zyx-safe": "^1.0.29"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
