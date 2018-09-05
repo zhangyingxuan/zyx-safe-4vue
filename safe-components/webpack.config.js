@@ -2,6 +2,11 @@ const path = require('path')
 const webpack = require('webpack')
 //引入删除文件夹插件
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractPlugin = require('extract-text-webpack-plugin');
+
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
 
 module.exports = {
   // 修改打包入口
@@ -19,26 +24,24 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader'
-        ],
+        use: ExtractPlugin.extract({
+          use: ['css-loader', 'vue-style-loader'],
+          fallback: 'style-loader'
+        })
       },
       {
         test: /\.scss$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader'
-        ],
+        use: ExtractPlugin.extract({
+          use: ['css-loader','sass-loader', 'vue-style-loader'],
+          fallback: 'style-loader'
+        })
       },
       {
         test: /\.sass$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader?indentedSyntax'
-        ],
+        use: ExtractPlugin.extract({
+          use: ['css-loader','sass-loader?indentedSyntax', 'vue-style-loader'],
+          fallback: 'style-loader'
+        })
       },
       {
         test: /\.vue$/,
@@ -87,7 +90,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
@@ -106,6 +110,11 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
+    // 为提取单独的 css文件 2018-9-5 10:25:12
+    new ExtractPlugin({
+      filename: './static/css/[name].[content][hash].css',
+      allChunks: true,
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'

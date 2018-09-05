@@ -12,6 +12,7 @@
 </style>
 <template>
   <div ref="dragElement"
+       :style="customStyle"
        class="drag-container"
        @mousedown="down" @touchstart="down"
        @mousemove="move" @touchmove="move"
@@ -22,17 +23,31 @@
 <script>
   export default {
     name: 'DragContainer',
+    prop: {
+      position: {
+        type: 'String'
+      }
+    },
     data() {
       return {
         dragElement: null,
         distanceX: 0,
         distanceY: 0,
-        isDragging: false
+        isDragging: false,
+        customStyle: ''
       }
     },
-
     methods: {
-      down() {
+      resetCustomStyle(dragElement) {
+        if(this.position) {
+          // 计算 组件居中left top
+          let left = Math.abs(window.innerWidth / 2 - dragElement.clientWidth / 2)
+          console.log(left)
+          this.customStyle = `left: ${left}`
+        }
+        return ``
+      },
+      down(event) {
         this.isDragging = true
         if (event.type === 'touchstart') {
           event.clientY = event.touches[0].clientY;
@@ -60,6 +75,8 @@
     },
     mounted() {
       this.dragElement = this.$refs.dragElement
+      // 重设组件位置
+      this.resetCustomStyle(this.dragElement)
     }
   }
 </script>
