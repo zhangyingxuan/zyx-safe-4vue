@@ -43,7 +43,7 @@
 <script>
   import ZyxTransition from '../transition/ZyxTransition'
   export default {
-    name: 'scrollToTop',
+    name: 'ScrollToTop',
     components: {
       ZyxTransition
     },

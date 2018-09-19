@@ -55,7 +55,7 @@
 <script>
   import ZyxTransition from '../transition/ZyxTransition'
   export default {
-    name: 'scrollToBottom',
+    name: 'ScrollToBottom',
     components: {
       ZyxTransition
     },

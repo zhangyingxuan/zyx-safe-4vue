@@ -47,8 +47,8 @@
       巨长的一篇文章
       巨长的一篇文章
     </pre>
-    <ScrollToTop></ScrollToTop>
-    <ScrollToBottom @click.native="onClick"></ScrollToBottom>
+    <scrollToTop></scrollToTop>
+    <scrollToBottom @click.native="onClick"></scrollToBottom>
 
 
     <h2>ScrollToTop Attributes</h2>
@@ -59,16 +59,16 @@
 </template>
 
 <script>
-  import ScrollToTop from '../../../safe-components/src/packages/scrollTo/scrollToTop'
-  import ScrollToBottom from '../../../safe-components/src/packages/scrollTo/scrollToBottom'
+  // import ScrollToTop from '../../../safe-components/src/packages/scrollTo/scrollToTop'
+  // import ScrollToBottom from '../../../safe-components/src/packages/scrollTo/scrollToBottom'
   import AttributesTable from '../../components/attributesTable'
   import EventsOrMethodsTable from '../../components/eventsOrMethodsTable'
 
   export default {
     name: 'ScrollToTopDemo',
     components: {
-      ScrollToTop,
-      ScrollToBottom,
+      // ScrollToTop,
+      // ScrollToBottom,
       AttributesTable,
       EventsOrMethodsTable
     },
